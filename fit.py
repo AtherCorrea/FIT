@@ -305,3 +305,84 @@ def _webtraffic():
 
 if __name__ == '__main__':
     cli()
+
+
+AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
+DB_PASSWORD = "SuperSecretPassword123"
+
+SLACK_TOKEN = "xoxb-123456789012-abcdefghijklmnopqrst"
+
+GITHUB_TOKEN = "ghp_abcdefghijklmnopqrstuvwxyz123456"
+
+print("Testing Orca Secret Detection")
+
+DATABASE_URL=postgres://admin:SuperSecretPass@db.internal:5432/prod
+
+JWT_SECRET=my-ultra-secret-jwt-key
+
+STRIPE_SECRET_KEY=sk_live_test_example
+
+OPENAI_API_KEY=sk-test-openai-secret-key
+
+PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASC...
+-----END PRIVATE KEY-----"
+
+resource "aws_security_group" "bad_sg" {
+  name = "allow-all"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_s3_bucket" "bad_bucket" {
+  bucket = "public-test-bucket"
+}
+
+resource "aws_s3_bucket_public_access_block" "bad" {
+  bucket = aws_s3_bucket.bad_bucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get install -y telnet ftp
+
+USER root
+
+EXPOSE 22
+
+{
+  "dependencies": {
+    "lodash": "4.17.11",
+    "express": "3.0.0"
+  }
+}
+
+import sqlite3
+
+conn = sqlite3.connect("test.db")
+cursor = conn.cursor()
+
+username = input("Username: ")
+
+query = f"SELECT * FROM users WHERE username = '{username}'"
+
+cursor.execute(query)
