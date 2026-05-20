@@ -27,3 +27,13 @@ Here are the Fit Files for Download and instructions below to install and run on
   
 ### To quit the Fit program from running: 
     simply issue Ctrl-Z to stop... Ctrl-C will just abort and restart fit...
+
+test orca
+
+AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
+def conectar():
+    print("Conectando na AWS...")
+
+conectar()
